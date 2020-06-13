@@ -2,8 +2,10 @@ language: minimal
 
 install:
     - sudo apt-get update
-    - sudo apt-get install python-pip -y
-    - sudo pip install docker-compose
+    - sudo apt-get upgrade -y
+    - sudo apt-get install docker-compose -y
 
-script: docker-compose build
+script: 
+    - docker-compose build
+    - ./deploy.sh
 
