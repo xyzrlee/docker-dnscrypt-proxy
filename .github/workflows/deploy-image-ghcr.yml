@@ -5,8 +5,8 @@ on:
 env:
   IMAGE_NAME: dnscrypt-proxy
   TAG_LATEST: latest
-  TAG_CURRENT: ${{ vars.DNSCRYPT_VERSION }}
-  VERSION: ${{ vars.DNSCRYPT_VERSION }}
+  TAG_CURRENT: ${{ vars.DNSCRYPT_PROXY_VERSION }}
+  VERSION: ${{ vars.DNSCRYPT_PROXY_VERSION }}
 
 jobs:
   build:
@@ -18,12 +18,6 @@ jobs:
     - name: Build
       run: | 
         ./build.sh
-    - name: Build
-      run: | 
-        docker build \
-        --tag ghcr.io/$GITHUB_ACTOR/${{env.IMAGE_NAME}}:${{env.TAG_CURRENT}} \
-        --tag ghcr.io/$GITHUB_ACTOR/${{env.IMAGE_NAME}}:${{env.TAG_LATEST}} \
-        .
     - name: Docker login
       if: ${{ github.ref_name == 'master' }}
       run: >-
