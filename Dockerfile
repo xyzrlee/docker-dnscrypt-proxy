@@ -25,5 +25,11 @@ RUN set -ex \
 FROM ${BASE_IMAGE}
 
 COPY --from=builder /usr/local/bin/dnscrypt-proxy /usr/local/bin/
+COPY entrypoint.sh /
 
-ENTRYPOINT ["dnscrypt-proxy"]
+RUN set -ex \
+      && apt-get update \
+      && apt-get install -y ca-certificates \
+      && rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT ["/entrypoint.sh"]
