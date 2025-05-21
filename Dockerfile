@@ -30,6 +30,7 @@ COPY entrypoint.sh /
 RUN set -ex \
       && apt-get update \
       && apt-get install -y ca-certificates \
-      && rm -rf /var/lib/apt/lists/*
+      && rm -rf /var/lib/apt/lists/* \
+      && chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
